@@ -16,7 +16,7 @@ import { getSoPhachTheoMon } from '../../../../api/huongDanDonTui'
 const InHuongDanDanhPhach = ({ open, handleModal, listMonthi, monThi}) => {
     // ** State
     // ** Custom close btn
-    const tenMon = listMonthi.find(obj => obj.value === parseInt(monThi))
+    const tenMon = listMonthi ? listMonthi.find(obj => obj.value === parseInt(monThi)) : ''
     const [dataPrint, setDataPrint] = useState([])
     const CloseBtn = <X className='cursor-pointer' size={15} onClick={handleModal} />
     const fetchDataPrint = async () => {

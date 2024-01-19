@@ -32,6 +32,14 @@ class TruongDaiHocRepository extends BaseRepository {
       return super.getAll(page, perPage);
     }
   }
+
+  async kiemTraTruong(kihieuTruong) {
+    const results = await this.database('tbl_truongdaihoc')
+    .select('*')
+    .where('kiHieuTruong', kiHieuTruong)
+    return results
+  }
+
   _getQueryBuilder() {
     return this.database(this.tableName).select('*');
   }
