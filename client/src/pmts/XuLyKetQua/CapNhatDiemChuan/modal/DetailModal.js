@@ -13,7 +13,7 @@ import responseResultHelper from '../../../utils/reponsive'
 import { ACTION_METHOD_TYPE } from '../../../utils/constant'
 // ** Styles
 import '@styles/react/libs/flatpickr/flatpickr.scss'
-import { TaoNhieuHoSoDangKi } from '../../../../api/hoSoDangKi'
+import {  } from '../../../../api/hoSoDangKi'
 import { toDateString } from '../../../../utility/Utils'
 const DetailModal = ({ data }) => {
   const columnsData = [
