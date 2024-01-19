@@ -15,7 +15,7 @@ import { ACTION_METHOD_TYPE } from '../../../utils/constant'
 import '@styles/react/libs/flatpickr/flatpickr.scss'
 import { TaoNhieuHoSoDangKi } from '../../../../api/hoSoDangKi'
 import { toDateString } from '../../../../utility/Utils'
-import { taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
+import { kiemTraTruong, taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
 import { kiemTraNganh, taoNganhDaiHoc } from '../../../../api/nganhDaiHoc'
 const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, listDcdt, listTDHda, listNganhda, listLHDT, listLTN, listCN, listCNH, listDTUT }) => {
     // ** State
@@ -249,11 +249,16 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
             if (row[9] !== null) {
                 const processTruong = async () => {
                     if (!listTDH.find(e => e.kiHieuTruong === row[9])) {
-                        const res = await taoTruongDaiHoc({
-                            tenTruong: row[9],
-                            kiHieuTruong: row[9],
-                            ghiChu: row[9],
+                        const resKT = await kiemTraTruong({
+                            kiHieuTruong: row[9]
                         })
+                        if (resKT?.result?.length === 0) {
+                            const res = await taoTruongDaiHoc({
+                                tenTruong: row[9],
+                                kiHieuTruong: row[9],
+                                ghiChu: row[9],
+                            })
+                        }
                         // listTDH.push({
                         //     maTruong: res.result[0],
                         //     tenTruong: row[9],

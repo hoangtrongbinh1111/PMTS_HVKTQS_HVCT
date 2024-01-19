@@ -9,6 +9,7 @@ router.put('/update', TruongDaiHocController.SuaTruongDaiHoc);
 router.delete('/delete', TruongDaiHocController.XoaTruongDaiHoc);
 router.get('/export', TruongDaiHocController.ExportExcel);
 router.get('/exporttemplate', TruongDaiHocController.ExportExcelTemplate);
+router.post('/kiemTraTruong', TruongDaiHocController.KiemTraTruong);
 
 
 

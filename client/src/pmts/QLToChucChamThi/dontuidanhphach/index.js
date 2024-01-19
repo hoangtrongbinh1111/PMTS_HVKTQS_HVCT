@@ -42,7 +42,7 @@ const DonTuiDanhPhach = () => {
     const [currentPageTuithi, setCurrentPageTuithi] = useState(1)
     const [perPageMon, setPerPageMon] = useState(10)
     const [perPageTui, setPerPageTui] = useState(10)
-    const [listMonthi, setListMonthi] = useState([])
+    const [listMonthi, setListMonthi] = useState(null)
     const [monThi, setMonThi] = useState()
     const [listTuithi, setListTuithi] = useState([])
     const [tuiThi, setTuiThi] = useState()
@@ -210,7 +210,7 @@ const DonTuiDanhPhach = () => {
                                     <Label for='maDidiem' style={{ marginRight: '10px' }}>
                                         Môn thi:
                                     </Label>
-                                    <div style={{ width: '75%' }}>
+                                   {listMonthi && <div style={{ width: '75%' }}>
                                         <Select
                                             theme={selectThemeColors}
                                             className='react-select'
@@ -229,6 +229,7 @@ const DonTuiDanhPhach = () => {
                                             disabled={!checkdanhphach}
                                         />
                                     </div>
+                                   }
                                 </div>
                             </Col>
                         }
