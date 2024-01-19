@@ -13,7 +13,7 @@ import { AbilityContext } from '@src/utility/context/Can'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
 
 // import API
-import { getListNganhDaiHoc, searchListNganhDaiHoc, taoNganhDaiHoc, exportNganhDaiHoc, exportNganhDaiHocTemplate } from '../../../api/nganhDaiHoc'
+import { getListNganhDaiHoc, searchListNganhDaiHoc, taoNganhDaiHoc, exportNganhDaiHoc, exportNganhDaiHocTemplate, kiemTraNganh } from '../../../api/nganhDaiHoc'
 
 //import thư viện
 import { TemplateHandler } from "easy-template-x"

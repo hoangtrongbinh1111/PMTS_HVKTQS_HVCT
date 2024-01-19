@@ -45,7 +45,6 @@ exports.TaoNganhDaiHoc = async (req, res) => {
   const nganhDaiHocRepository = new NganhDaiHocRepository();
   try {
     const response = await nganhDaiHocRepository.create({
-       
       tenNganh: req.body.tenNganh,
       kihieuNganh: req.body.kihieuNganh,
       ghiChu: req.body.ghiChu
@@ -84,6 +83,20 @@ exports.XoaNganhDaiHoc = async (req, res) => {
       return responseFailed({ res });
     }
     return responseSuccess({ res });
+  } catch (err) {
+    return responseServerError({ res, err });
+  }
+}
+
+exports.KiemTraNganh = async (req, res) => {
+  const nganhDaiHocRepository = new NganhDaiHocRepository();
+  const { kihieuNganh } = req.body;
+  try {
+    const data = await nganhDaiHocRepository.kiemTraNganh(kihieuNganh);
+    if (!data) {
+      return responseFailed({ res });
+    }
+    return responseSuccessWithData({ res, data });
   } catch (err) {
     return responseServerError({ res, err });
   }

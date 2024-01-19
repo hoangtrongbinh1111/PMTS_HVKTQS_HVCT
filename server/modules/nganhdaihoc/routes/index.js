@@ -9,7 +9,7 @@ router.put('/update', NganhDaiHocController.SuaNganhDaiHoc);
 router.delete('/delete', NganhDaiHocController.XoaNganhDaiHoc);
 router.get('/export', NganhDaiHocController.ExportExcel);
 router.get('/exporttemplate', NganhDaiHocController.ExportExcelTemplate);
-
+router.post('/kiemTraNganh', NganhDaiHocController.KiemTraNganh);
 
 
 
