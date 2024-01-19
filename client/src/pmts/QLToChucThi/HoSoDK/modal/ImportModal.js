@@ -51,7 +51,7 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
         {
             name: 'Mã',
             maxWidth: '10px',
-            selector: row => row.STT,
+            selector: row => row.soTT,
 
         },
         {
