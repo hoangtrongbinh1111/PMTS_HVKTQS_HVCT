@@ -96,9 +96,15 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
         },
     ]
     const CloseBtn = <X className='cursor-pointer' size={15} onClick={handleModal} />
+    const chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => arr.slice((i * size), (size * (i + 1))))
+
     const _handleXoaNMT = async () => {
-        const res = await TaoNhieuHoSoDangKi(dataImport)
-        responseResultHelper(res, handleModal, fetchUser, ACTION_METHOD_TYPE.IMPORTEXCEL)
+
+        chunk(dataImport, 50).forEach(async subarr => {
+            const res = await TaoNhieuHoSoDangKi(subarr)
+            responseResultHelper(res, handleModal, fetchUser, ACTION_METHOD_TYPE.IMPORTEXCEL)
+
+        })
     }
     // list các trường lỗi
     const checkErr = (listImport) => {
@@ -248,13 +254,13 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
                             kiHieuTruong: row[9],
                             ghiChu: row[9],
                         })
-                        listTDH.push({
-                            maTruong: res.result[0],
-                            tenTruong: row[9],
-                            kiHieuTruong: row[9],
-                        })
-                        infoOneRow.maTruong = res.result[0]
-                        infoOneRow.kiHieuTruong = row[9]
+                        // listTDH.push({
+                        //     maTruong: res.result[0],
+                        //     tenTruong: row[9],
+                        //     kiHieuTruong: row[9],
+                        // })
+                        // infoOneRow.maTruong = res.result[0]
+                        // infoOneRow.kiHieuTruong = row[9]
                         return listTDH
                     } else {
                         infoOneRow.maTruong = listTDH.find(e => e.kiHieuTruong === row[9]).maTruong
