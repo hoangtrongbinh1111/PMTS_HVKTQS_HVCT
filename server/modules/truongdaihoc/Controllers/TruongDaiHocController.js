@@ -58,6 +58,20 @@ exports.TaoTruongDaiHoc = async (req, res) => {
     return responseServerError({ res, err });
   }
 };
+
+exports.KiemTraTruong = async (req, res) => {
+  const truongDaiHocRepository = new TruongDaiHocRepository();
+  const { kiHieuTruong } = req.body;
+  try {
+    const data = await nganhDaiHocRepository.kiemTraTruong(kiHieuTruong);
+    if (!data) {
+      return responseFailed({ res });
+    }
+    return responseSuccessWithData({ res, data });
+  } catch (err) {
+    return responseServerError({ res, err });
+  }
+}
 exports.SuaTruongDaiHoc = async (req, res) => {
   const truongDaiHocRepository = new TruongDaiHocRepository();
   const id = req.body.id

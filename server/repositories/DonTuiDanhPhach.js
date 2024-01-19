@@ -63,11 +63,11 @@ class DonTuiDanhPhach {
         }
 
         if (relaTuiThiArr.length > 0) {
-            await this.database.batchInsert('tbl_tuithi', relaTuiThiArr);
+            await this.database.batchInsert('tbl_tuithi', relaTuiThiArr, 300);
         }
 
         if (relaBaiThiArr.length > 0) {
-            await this.database.batchInsert('tbl_rela_baithituithi', relaBaiThiArr);
+            await this.database.batchInsert('tbl_rela_baithituithi', relaBaiThiArr, 300);
         }
 
     }

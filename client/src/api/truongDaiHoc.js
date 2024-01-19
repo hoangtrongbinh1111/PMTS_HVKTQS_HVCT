@@ -27,6 +27,13 @@ export const xoaTruongDaiHoc = async (data) => {
   const res = await API.delete(uri)
   return res
 }
+
+export const kiemTraTruong = async (data) => {
+  const uri = `/truongdaihoc/kiemTraTruong`
+  const res = await API.post(uri, data)
+  return res
+}
+
 export const exportTruongDaiHoc = async () => {
   axios({
     url: 'http://localhost:4001/api/v1/truongdaihoc/export', // Replace with your server's URL
