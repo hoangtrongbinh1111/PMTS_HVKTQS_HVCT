@@ -3,6 +3,7 @@ const knex = require('knex');
 const BaseRepository = require('./BaseRepository');
 const { TBL_NGANH, TBL_NGANH_KEY } = require("../schemas/constant");
 const { getSlaveDatabase } = require('../db');
+const { result } = require('lodash');
 
 class NganhDaiHocRepository extends BaseRepository {
   constructor() {
@@ -31,6 +32,14 @@ class NganhDaiHocRepository extends BaseRepository {
       return super.getAll(page, perPage);
     }
   }
+
+  async kiemTraNganh(kihieuNganh) {
+    const results = await this.database('tbl_nganh')
+    .select('*')
+    .where('kihieuNganh', kihieuNganh)
+    return results
+  }
+
   _getQueryBuilder() {
     return this.database(this.tableName).select('*');
   }

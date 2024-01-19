@@ -16,7 +16,7 @@ import '@styles/react/libs/flatpickr/flatpickr.scss'
 import { TaoNhieuHoSoDangKi } from '../../../../api/hoSoDangKi'
 import { toDateString } from '../../../../utility/Utils'
 import { taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
-import { taoNganhDaiHoc } from '../../../../api/nganhDaiHoc'
+import { kiemTraNganh, taoNganhDaiHoc } from '../../../../api/nganhDaiHoc'
 const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, listDcdt, listTDHda, listNganhda, listLHDT, listLTN, listCN, listCNH, listDTUT }) => {
     // ** State
     // ** Custom close btn
@@ -270,11 +270,16 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
             if (row[10] !== null) {
                 const processNganh = async () => {
                     if (!listNganh.find(e => e.kihieuNganh === row[10])) {
-                        const res = await taoNganhDaiHoc({
-                            tenNganh: row[10],
-                            kihieuNganh: row[10],
-                            ghiChu: row[10],
+                        const resKT = await kiemTraNganh({
+                            kihieuNganh: row[10]
                         })
+                        if (resKT?.result?.length === 0) {
+                            const res = await taoNganhDaiHoc({
+                                tenNganh: row[10],
+                                kihieuNganh: row[10],
+                                ghiChu: row[10],
+                            })
+                        }
 
                         // listNganh.push({
                         //     maNganh: res.result[0],
