@@ -33,7 +33,7 @@ class TruongDaiHocRepository extends BaseRepository {
     }
   }
 
-  async kiemTraTruong(kihieuTruong) {
+  async kiemTraTruong(kiHieuTruong) {
     const results = await this.database('tbl_truongdaihoc')
     .select('*')
     .where('kiHieuTruong', kiHieuTruong)
