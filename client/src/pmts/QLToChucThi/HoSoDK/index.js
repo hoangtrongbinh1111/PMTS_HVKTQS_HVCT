@@ -158,8 +158,7 @@ const HoSoDK = () => {
             sortable: true,
             minWidth: '150px',
             selector: row => <>
-                <span id={`tooltip_truong_${row.STT}`}>{row.tenTruong}</span>
-                <UncontrolledTooltip target={`tooltip_truong_${row.STT}`}>{row.tenTruong}</UncontrolledTooltip>
+                <span>{row.tenTruong}</span>
             </>
         },
         {
@@ -167,8 +166,7 @@ const HoSoDK = () => {
             sortable: true,
             minWidth: '150px',
             selector: row => <>
-                <span id={`tooltip_${row.STT}`}>{row.tenChuyennganh}</span>
-                <UncontrolledTooltip target={`tooltip_${row.STT}`}>{row.tenChuyennganh}</UncontrolledTooltip>
+                <span>{row.tenChuyennganh}</span>
             </>
         },
         {
