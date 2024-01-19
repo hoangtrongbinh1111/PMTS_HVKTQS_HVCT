@@ -12,6 +12,4 @@ router.get('/exporttemplate', TruongDaiHocController.ExportExcelTemplate);
 router.post('/kiemTraTruong', TruongDaiHocController.KiemTraTruong);
 
 
-
-
 module.exports = router;

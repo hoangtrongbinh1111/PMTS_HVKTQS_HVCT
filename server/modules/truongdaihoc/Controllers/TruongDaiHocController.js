@@ -63,7 +63,8 @@ exports.KiemTraTruong = async (req, res) => {
   const truongDaiHocRepository = new TruongDaiHocRepository();
   const { kiHieuTruong } = req.body;
   try {
-    const data = await nganhDaiHocRepository.kiemTraTruong(kiHieuTruong);
+    const data = await truongDaiHocRepository.kiemTraTruong(kiHieuTruong);
+    console.log("data", data);
     if (!data) {
       return responseFailed({ res });
     }
@@ -72,6 +73,7 @@ exports.KiemTraTruong = async (req, res) => {
     return responseServerError({ res, err });
   }
 }
+
 exports.SuaTruongDaiHoc = async (req, res) => {
   const truongDaiHocRepository = new TruongDaiHocRepository();
   const id = req.body.id
