@@ -325,17 +325,17 @@ const PhongThi = () => {
 
                 <div className='react-dataTable react-dataTable-selectable-rows' style={{ marginRight: '20px', marginLeft: '20px' }}>
                     {
-                        data.soHoso <= data.sumSoluong ? <></> : <p>Số lượng chỗ ngồi còn thiếu so với số lượng thí sinh: <span style={{ color: 'red' }}>{data.soHoso - data.sumSoluong} (hiện có {data.sumSoluong} chỗ /{data.soHoso} thí sinh)</span></p>
+                        data?.soHoso <= data?.sumSoluong ? <></> : <p>Số lượng chỗ ngồi còn thiếu so với số lượng thí sinh: <span style={{ color: 'red' }}>{data?.soHoso - data?.sumSoluong} (hiện có {data?.sumSoluong} chỗ /{data?.soHoso} thí sinh)</span></p>
                     }
                     { loading ? <WaitingModal /> : <DataTable
                         noHeader
                         striped
                         className='react-dataTable'
                         columns={columns}
-                        data={filteredData?.data ? filteredData.data : data.data}
+                        data={filteredData?.data ? filteredData?.data : data?.data}
                         pagination
                         paginationServer
-                        paginationTotalRows={filteredData?.data ? filteredData.totalCount : data.totalCount}
+                        paginationTotalRows={filteredData?.data ? filteredData?.totalCount : data?.totalCount}
                         paginationComponentOptions={{
                             rowsPerPageText: 'Số hàng trên 1 trang:'
                         }}
