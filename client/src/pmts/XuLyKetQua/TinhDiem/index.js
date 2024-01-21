@@ -282,7 +282,6 @@ const TinhDiem = () => {
     useEffect(() => {
         getInfo()
         .then(res => {
-            console.log(res)
             const listres = res.result?.data
             setThamso(listres[0] ?? {})
         }).catch(err => {

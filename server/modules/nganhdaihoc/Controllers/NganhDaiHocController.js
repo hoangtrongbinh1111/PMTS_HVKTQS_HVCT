@@ -44,15 +44,15 @@ exports.getListNganhDaiHoc = async (req, res) => {
 exports.TaoNganhDaiHoc = async (req, res) => {
   const nganhDaiHocRepository = new NganhDaiHocRepository();
   try {
-    const response = await nganhDaiHocRepository.create({
+    const data = await nganhDaiHocRepository.create({
       tenNganh: req.body.tenNganh,
       kihieuNganh: req.body.kihieuNganh,
       ghiChu: req.body.ghiChu
     });
-    if (!response) {
+    if (!data) {
       return responseFailed({ res });
     }
-    return responseSuccess({ res });
+    return responseSuccessWithData({ res, data });
   } catch (err) {
     return responseServerError({ res, err });
   }

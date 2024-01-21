@@ -11,7 +11,7 @@ const App = () => {
       const res = switchDotTuyenSinhByName({
         dbName: dbName_,
       }).then(res => {
-      console.log(res)
+      console.log("")
     }).catch(err => {
       console.log(err)
     })
