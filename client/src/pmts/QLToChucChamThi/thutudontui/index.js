@@ -235,8 +235,8 @@ const ThuTuDonTui = () => {
     const fetchDanhSachDonTui = (thutuDonTui) => {
         if (thutuDonTui.data.length > 0) {
             getListPhongThi({
-                page: currentPage,
-                perPage
+                page: 1,
+                perPage:1000
             }).then(res => {
                 const numbers = []
                 for (let i = 0; i < thutuDonTui.data.length; i++) {
@@ -261,8 +261,8 @@ const ThuTuDonTui = () => {
 
         } else {
             getListPhongThi({
-                page: currentPage,
-                perPage
+                page: 1,
+                perPage:1000
             }).then(res => {
                 setData(res.result)
             })
@@ -418,21 +418,21 @@ const ThuTuDonTui = () => {
                     </Col>
                     }
                 </Row>
-                <div className='react-dataTable react-dataTable-selectable-rows' style={{ marginRight: '20px', marginLeft: '20px' }}>
+                <div className='react-dataTable react-dataTable-selectable-rows' style={{ marginRight: '20px', marginLeft: '20px', maxHeight: "530px", overflowY: "auto"}}>
                     {loading ? <WaitingModal /> : <DataTable
                         noHeader
                         striped
                         className='react-dataTable'
                         columns={columns}
                         data={searchValue.length > 0 ? filterData : data.data}
-                        pagination
-                        paginationServer
-                        paginationTotalRows={searchValue.length > 0 ? filterData.length : data.totalCount}
-                        paginationComponentOptions={{
-                            rowsPerPageText: 'Số hàng trên 1 trang:'
-                        }}
-                        onChangeRowsPerPage={handlePerRowsChange}
-                        onChangePage={handlePagination}
+                        // pagination
+                        // paginationServer
+                        // paginationTotalRows={searchValue.length > 0 ? filterData.length : data.totalCount}
+                        // paginationComponentOptions={{
+                        //     rowsPerPageText: 'Số hàng trên 1 trang:'
+                        // }}
+                        // onChangeRowsPerPage={handlePerRowsChange}
+                        // onChangePage={handlePagination}
                     />}
                 </div>
             </Card>
