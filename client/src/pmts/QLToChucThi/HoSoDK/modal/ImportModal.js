@@ -17,7 +17,7 @@ import { TaoNhieuHoSoDangKi } from '../../../../api/hoSoDangKi'
 import { toDateString } from '../../../../utility/Utils'
 import { kiemTraTruong, taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
 import { kiemTraNganh, taoNganhDaiHoc } from '../../../../api/nganhDaiHoc'
-const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, listDcdt, listTDHda, listNganhda, listLHDT, listLTN, listCN, listCNH, listDTUT }) => {
+const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, listDcdt, listTDHda, listNganhda, listLHDT, listLTN, listCN, listCNH, listDTUT, loading, setLoading }) => {
     // ** State
     // ** Custom close btn
     const [listTDH, setListTDH] = useState(listTDHda)
@@ -99,6 +99,7 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
     const chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => arr.slice((i * size), (size * (i + 1))))
 
     const _handleXoaNMT = async () => {
+        setLoading(true)
         const chunks = chunk(dataImport, 50)
         const promises = chunks.map(async (subarr) => {
             const res = await TaoNhieuHoSoDangKi(subarr)
