@@ -254,68 +254,14 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
             }
             // kiểm tra trường đại học
             if (row[9] !== null) {
-                const processTruong = async () => {
-                    if (!listTDH.find(e => e.kiHieuTruong === row[9])) {
-                        const resKT = await kiemTraTruong({
-                            kiHieuTruong: row[9]
-                        })
-                        if (resKT?.result?.length === 0) {
-                            const res = await taoTruongDaiHoc({
-                                tenTruong: row[9],
-                                kiHieuTruong: row[9],
-                                ghiChu: row[9],
-                            })
-                        }
-                        // listTDH.push({
-                        //     maTruong: res.result[0],
-                        //     tenTruong: row[9],
-                        //     kiHieuTruong: row[9],
-                        // })
-                        // infoOneRow.maTruong = res.result[0]
-                        // infoOneRow.kiHieuTruong = row[9]
-                        return listTDH
-                    } else {
-                        infoOneRow.maTruong = listTDH.find(e => e.kiHieuTruong === row[9]).maTruong
-                        infoOneRow.kiHieuTruong = row[9]
-                        return listTDH
-
-                    }
-                }
-                setListTDH(processTruong())
-
+                infoOneRow.kiHieuTruong = row[9]
             }
+
             // kiểm tra ngành đại học
             if (row[10] !== null) {
-                const processNganh = async () => {
-                    if (!listNganh.find(e => e.kihieuNganh === row[10])) {
-                        const resKT = await kiemTraNganh({
-                            kihieuNganh: row[10]
-                        })
-                        if (resKT?.result?.length === 0) {
-                            const res = await taoNganhDaiHoc({
-                                tenNganh: row[10],
-                                kihieuNganh: row[10],
-                                ghiChu: row[10],
-                            })
-                        }
-
-                        // listNganh.push({
-                        //     maNganh: res.result[0],
-                        //     tenNganh: row[10],
-                        //     kihieuNganh: row[10],
-                        // })
-                        // infoOneRow.maNganh = res.result[0]
-                        // infoOneRow.kihieuNganh = row[10]
-                        return listNganh
-                    } else {
-                        infoOneRow.maNganh = listNganh.find(e => e.kihieuNganh === row[10]).maNganh
-                        infoOneRow.kihieuNganh = row[10]
-                        return listNganh
-
-                    }
-                }
-                setListNganh(processNganh())
+                infoOneRow.kihieuNganh = row[10]
             }
+            
             // kiểm tra loại hình
             if (row[11] !== null) {
                 if (!listLHDT.find(e => e.kiHieuLoaihinh === row[11])) {
@@ -430,9 +376,10 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
         return temp
     }
     useEffect(() => {
-
-        setListErr(checkErr(listImport))
+        const errs = checkErr(listImport)
+        setListErr(errs)
     }, [])
+
     return (
         <Modal
             isOpen={open}
