@@ -31,11 +31,10 @@ class PhongThiRepository extends BaseRepository {
       const results = await queryBuilder.limit(perPage).offset(offset);
       const sumSoluong = await this.database('tbl_phongthi').sum('soLuong')
       const soHoso = await this.database('tbl_hosothisinh').count('maHoso')
-
-      const totalCount = await this._getTotalCount(queryBuilder);
+      const totalCount = await this.database('tbl_phongthi').count('maPhongthi');
       return {
         data: results,
-        totalCount: totalCount['count(`maPhongthi`)'],
+        totalCount: totalCount[0]['count(`maPhongthi`)'],
         sumSoluong: sumSoluong[0]['sum(`soLuong`)'],
         soHoso: soHoso[0]['count(`maHoso`)']
       };
