@@ -483,7 +483,7 @@ const HoSoDK = () => {
                 <DeleteModal open={modalXoaHS} handleModal={handleModalXoaHS} fetchUser={fetchUser} infoEdit={info} />
             }
             {
-                listImport && <ImportModal open={modalImportHS} fetchUser={fetchUser} handleModal={handleModalImportHS} listImport={listImport} listDiadiem={listDiadiem} listDcdt={listDcdt} listTDHda={listTDH} listNganhda={listNganh} listLHDT={listLHDT} listLTN={listLTN} listCN={listCN} listCNH={listCNH} listDTUT={listDTUT}></ImportModal>
+                listImport && <ImportModal open={modalImportHS} fetchUser={fetchUser} handleModal={handleModalImportHS} listImport={listImport} listDiadiem={listDiadiem} listDcdt={listDcdt} listTDHda={listTDH} listNganhda={listNganh} listLHDT={listLHDT} listLTN={listLTN} listCN={listCN} listCNH={listCNH} listDTUT={listDTUT} loading={loading} setLoading={setLoading}></ImportModal>
             }
 
             <ImageModal open={modalImportImage} handleModal={handleModalImportImage} data={datasource}></ImageModal>

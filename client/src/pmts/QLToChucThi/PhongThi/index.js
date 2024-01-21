@@ -60,11 +60,11 @@ const PhongThi = () => {
     const [filteredData, setFilteredData] = useState([])
     const [perPage, setPerPage] = useState(10)
     const [listDiaDiemThi, setListDiaDiemThi] = useState([])
-
     const [data, setData] = useState({
         data: [],
         totalCount: 0
     })
+
     const [info, setInfo] = useState()
     const _handleSuaPT = (data) => {
         setInfo(data)
@@ -140,6 +140,7 @@ const PhongThi = () => {
             perPage
         }).then(res => {
             setData(res.result)
+            console.log("res.results", res.result)
             setLoading(false)
         })
     }

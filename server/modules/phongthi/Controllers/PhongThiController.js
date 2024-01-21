@@ -25,10 +25,8 @@ var values = {
 };
 
 exports.getListPhongThi = async (req, res) => {
-
   const phongThiRepository = new PhongThiRepository();
   const { page, perPage, query } = req.query;
-
   try {
     const data = await phongThiRepository.getAll(parseInt(page), parseInt(perPage), query);
     if (!data) {
@@ -42,7 +40,6 @@ exports.getListPhongThi = async (req, res) => {
 
 
 exports.TaoPhongThi = async (req, res) => {
-
   const phongThiRepository = new PhongThiRepository();
   try {
     const response = await phongThiRepository.create({
@@ -62,7 +59,6 @@ exports.TaoPhongThi = async (req, res) => {
   }
 };
 exports.SuaPhongThi = async (req, res) => {
-
   const phongThiRepository = new PhongThiRepository();
   const id = req.body.id
   try {
@@ -85,7 +81,6 @@ exports.SuaPhongThi = async (req, res) => {
   }
 }
 exports.XoaPhongThi = async (req, res) => {
-
   const phongThiRepository = new PhongThiRepository();
   const { id } = req.query;
   try {
