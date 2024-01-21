@@ -64,7 +64,6 @@ exports.KiemTraTruong = async (req, res) => {
   const { kiHieuTruong } = req.body;
   try {
     const data = await truongDaiHocRepository.kiemTraTruong(kiHieuTruong);
-    console.log("data", data);
     if (!data) {
       return responseFailed({ res });
     }
@@ -114,7 +113,6 @@ exports.ExportExcel = async (req, res) => {
     return responseServerError({ res, err });
   }
 }
-
 exports.ExportExcelTemplate = async (req, res) => {
   const fs = require('fs');
   try {

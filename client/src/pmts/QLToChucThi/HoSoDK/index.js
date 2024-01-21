@@ -1,4 +1,4 @@
-// ** React Imports
+﻿// ** React Imports
 import React, { Fragment, useState, forwardRef, useEffect, useRef, useContext } from 'react'
 
 // imprt thư viện của bảng
@@ -459,10 +459,10 @@ const HoSoDK = () => {
                         striped
                         columns={columns}
                         className='react-dataTable'
-                        data={filteredData?.data ? filteredData.data : data.data}
+                        data={filteredData?.data ? filteredData?.data : data?.data}
                         pagination
                         paginationServer
-                        paginationTotalRows={filteredData?.data ? filteredData.totalCount : data.totalCount}
+                        paginationTotalRows={filteredData?.data ? filteredData?.totalCount : data?.totalCount}
                         paginationComponentOptions={{
                             rowsPerPageText: 'Số hàng trên 1 trang:',
                             selectAllRowsItem: true,

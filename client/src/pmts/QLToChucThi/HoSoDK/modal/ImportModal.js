@@ -99,12 +99,18 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
     const chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (v, i) => arr.slice((i * size), (size * (i + 1))))
 
     const _handleXoaNMT = async () => {
-
-        chunk(dataImport, 50).forEach(async subarr => {
+        const chunks = chunk(dataImport, 50)
+        const promises = chunks.map(async (subarr) => {
             const res = await TaoNhieuHoSoDangKi(subarr)
-            responseResultHelper(res, handleModal, fetchUser, ACTION_METHOD_TYPE.IMPORTEXCEL)
-
+            return res
         })
+
+        const results = await Promise.all(promises)
+
+        results.forEach((res) => {
+            responseResultHelper(res, handleModal, null, ACTION_METHOD_TYPE.IMPORTEXCEL)
+        })
+        fetchUser()
     }
     // list các trường lỗi
     const checkErr = (listImport) => {
