@@ -37,6 +37,7 @@ class NganhDaiHocRepository extends BaseRepository {
     const results = await this.database('tbl_nganh')
     .select('*')
     .where('kihieuNganh', kihieuNganh)
+    .first()
     return results
   }
 

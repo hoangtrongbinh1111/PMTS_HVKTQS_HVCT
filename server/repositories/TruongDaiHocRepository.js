@@ -37,6 +37,7 @@ class TruongDaiHocRepository extends BaseRepository {
     const results = await this.database('tbl_truongdaihoc')
     .select('*')
     .where('kiHieuTruong', kiHieuTruong)
+    .first()
     return results
   }
 

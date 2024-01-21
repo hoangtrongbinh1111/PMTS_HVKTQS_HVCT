@@ -44,16 +44,15 @@ exports.getListTruongDaiHoc = async (req, res) => {
 exports.TaoTruongDaiHoc = async (req, res) => {
   const truongDaiHocRepository = new TruongDaiHocRepository();
   try {
-    const response = await truongDaiHocRepository.create({
-       
+    const data = await truongDaiHocRepository.create({
       tenTruong: req.body.tenTruong,
       kiHieuTruong: req.body.kiHieuTruong,
       ghiChu: req.body.ghiChu
     });
-    if (!response) {
+    if (!data) {
       return responseFailed({ res });
     }
-    return responseSuccess({ res });
+    return responseSuccessWithData({ res, data });
   } catch (err) {
     return responseServerError({ res, err });
   }

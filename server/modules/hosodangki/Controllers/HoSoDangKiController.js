@@ -15,6 +15,8 @@ const PhongThiRepository = require("../../../repositories/PhongThiRepository");
 
 const { MimeType } = require("easy-template-x");
 const { getSlaveName } = require("../../../db");
+const TruongDaiHocRepository = require("../../../repositories/TruongDaiHocRepository");
+const NganhDaiHocRepository = require("../../../repositories/NganhDaiHocRepository");
 var values = {
   data:
     [
@@ -242,12 +244,33 @@ exports.TaoHoSoDangKi = async (req, res) => {
 };
 exports.TaoNhieuHoSoDangKi = async (req, res) => {
   const hoSoDangKiRepository = new HoSoDangKiRepository();
-
+  const truongDaiHocRepository = new TruongDaiHocRepository();
+  const nganhDaiHocRepository = new NganhDaiHocRepository();
   try {
     req.body.forEach(async (element) => {
       let diemNgoaiNgu = 0
+      let maNganh1 
+      let maTruong1
       if (element.ngoaiNgu === 'Miễn Thi') {
         diemNgoaiNgu = 100
+      }
+      const data1 = await truongDaiHocRepository.kiemTraTruong(element?.kiHieuTruong);
+      if (!data1) {
+        const response = await truongDaiHocRepository.create({
+          tenTruong: element?.kiHieuTruong,
+          kiHieuTruong: element?.kiHieuTruong,
+          ghiChu: element?.kiHieuTruong
+        })
+        maTruong1 = response[0]
+      }
+      const data2 = await nganhDaiHocRepository.kiemTraNganh(element?.kihieuNganh);
+      if (!data2) {
+        const response = await nganhDaiHocRepository.create({
+          tenNganh: element?.kihieuNganh,
+          kihieuNganh: element?.kihieuNganh,
+          ghiChu: element?.kihieuNganh
+        })
+        maNganh1 = response[0]
       }
       const response = await hoSoDangKiRepository.create({
         soBaodanh: element.soBaodanh,
@@ -274,8 +297,8 @@ exports.TaoNhieuHoSoDangKi = async (req, res) => {
         tongDiem: 0,
         maDidiem: element.maDidiem,
         maDcdaotao: element.maDcdaotao,
-        maTruong: element.maTruong,
-        maNganh: element.maNganh,
+        maTruong: element.maTruong ?? maTruong1,
+        maNganh: element.maNganh ?? maNganh1,
         maLoaihinh: element.maLoaihinh,
         maPhanloai: element.maPhanloai,
         maChuyennganhTS: element.maChuyennganhTS,
