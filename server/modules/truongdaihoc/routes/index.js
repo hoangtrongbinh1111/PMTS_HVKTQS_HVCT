@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.get('/list', TruongDaiHocController.getListTruongDaiHoc);
 router.post('/add', TruongDaiHocController.TaoTruongDaiHoc);
+router.post('/taonhieu', TruongDaiHocController.TaoNhieuTruongDaiHoc);
 router.put('/update', TruongDaiHocController.SuaTruongDaiHoc);
 router.delete('/delete', TruongDaiHocController.XoaTruongDaiHoc);
 router.get('/export', TruongDaiHocController.ExportExcel);
