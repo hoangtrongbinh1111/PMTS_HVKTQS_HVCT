@@ -16,6 +16,13 @@ export const taoNganhDaiHoc = async (data) => {
   return res
 }
 
+export const taoNhieuNganhDaiHoc = async (data) => {
+  const uri = `/nganhdaihoc/taonhieu`
+  const res = await API.post(uri, data)
+  return res
+}
+
+
 export const suaNganhDaiHoc = async (data) => {
   const uri = `/nganhdaihoc/update`
   const res = await API.put(uri, data)

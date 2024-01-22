@@ -242,35 +242,110 @@ exports.TaoHoSoDangKi = async (req, res) => {
     return responseServerError({ res, err });
   }
 };
+
+// exports.TaoNhieuHoSoDangKi = async (req, res) => {
+//   const hoSoDangKiRepository = new HoSoDangKiRepository();
+//   const truongDaiHocRepository = new TruongDaiHocRepository();
+//   const nganhDaiHocRepository = new NganhDaiHocRepository();
+//   try {
+//     for (const element of req.body) {
+//       let diemNgoaiNgu = 0
+//       let maNganh1 
+//       let maTruong1
+//       if (element.ngoaiNgu === 'Miễn Thi') {
+//         diemNgoaiNgu = 100
+//       }
+//       const data1 = await truongDaiHocRepository.kiemTraTruong(element?.kiHieuTruong);
+//       console.log("data1", data1)
+//       if (!data1) {
+//         const response = await truongDaiHocRepository.create({
+//           tenTruong: element?.kiHieuTruong,
+//           kiHieuTruong: element?.kiHieuTruong,
+//           ghiChu: element?.kiHieuTruong
+//         })
+//         maTruong1 = response[0]
+//         console.log("response1", response[0])
+//       }
+//       const data2 = await nganhDaiHocRepository.kiemTraNganh(element?.kihieuNganh);
+//       if (!data2) {
+//         const response = await nganhDaiHocRepository.create({
+//           tenNganh: element?.kihieuNganh,
+//           kihieuNganh: element?.kihieuNganh,
+//           ghiChu: element?.kihieuNganh
+//         })
+//         maNganh1 = response[0]
+//       }
+//       const response = await hoSoDangKiRepository.create({
+//         soBaodanh: element.soBaodanh,
+//         soTT: element.soTT,
+//         STT: element.STT,
+//         loaiTS: element.loaiTS,
+//         hoTen: element.hoTen,
+//         ngaySinh: element.ngaySinh,
+//         gioiTinh: element.gioiTinh,
+//         noiSinh: element.noiSinh,
+//         coQuan: element.coQuan,
+//         namTN: element.namTN,
+//         capBac: element.capBac,
+//         ngoaiNgu: element.ngoaiNgu,
+//         hinhThucthiNN: element.hinhThucthiNN,
+//         diaChi: element.diaChi,
+//         dienThoai: element.dienThoai,
+//         thiNCS: element.thiNCS,
+//         tenDetai: element.tenDetai,
+//         giaoVienHD1: element.giaoVienHD1,
+//         giaoVienHD2: element.giaoVienHD2,
+//         fileAnh: element.fileAnh,
+//         ghiChu: element.ghiChu,
+//         tongDiem: 0,
+//         maDidiem: element.maDidiem,
+//         maDcdaotao: element.maDcdaotao,
+//         maTruong: element.maTruong ?? maTruong1,
+//         maNganh: element.maNganh ?? maNganh1,
+//         maLoaihinh: element.maLoaihinh,
+//         maPhanloai: element.maPhanloai,
+//         maChuyennganhTS: element.maChuyennganhTS,
+//         maChuyennganhhep: element.maChuyennganhhep,
+//         maHinhthuc: element.maHinhthuc,
+//         diemNgoaiNgu: diemNgoaiNgu,
+//         diemCoBan: 0,
+//         diemChuyenNganh: 0
+//       });
+//       if (!response) {
+//         return responseFailed({ res });
+//       }
+//     };
+//     return responseSuccess({ res });
+//   } catch (err) {
+//     console.log(err)
+//     return responseServerError({ res, err });
+//   }
+// };
+
 exports.TaoNhieuHoSoDangKi = async (req, res) => {
   const hoSoDangKiRepository = new HoSoDangKiRepository();
   const truongDaiHocRepository = new TruongDaiHocRepository();
   const nganhDaiHocRepository = new NganhDaiHocRepository();
+  
+  const resNganh = await nganhDaiHocRepository.getAll(1, 500);
+  const listNganh = resNganh?.data;
+  
+  const resTruong = await truongDaiHocRepository.getAll(1, 500);
+  const listTruong = resTruong?.data;
+
   try {
-    req.body.forEach(async (element) => {
-      let diemNgoaiNgu = 0
-      let maNganh1 
-      let maTruong1
+    for (const element of req.body) {      
+      let diemNgoaiNgu = 0;
+      let maNganh1;
+      let maTruong1;
+
       if (element.ngoaiNgu === 'Miễn Thi') {
-        diemNgoaiNgu = 100
+        diemNgoaiNgu = 100;
       }
-      const data1 = await truongDaiHocRepository.kiemTraTruong(element?.kiHieuTruong);
-      if (!data1) {
-        const response = await truongDaiHocRepository.create({
-          tenTruong: element?.kiHieuTruong,
-          kiHieuTruong: element?.kiHieuTruong,
-          ghiChu: element?.kiHieuTruong
-        })
-        maTruong1 = response[0]
-      }
-      const data2 = await nganhDaiHocRepository.kiemTraNganh(element?.kihieuNganh);
+      const data1 = listTruong?.find(e => e.kiHieuTruong === element?.kiHieuTruong);
+      const data2 = listNganh?.find(e => e.kihieuNganh === element?.kihieuNganh);
       if (!data2) {
-        const response = await nganhDaiHocRepository.create({
-          tenNganh: element?.kihieuNganh,
-          kihieuNganh: element?.kihieuNganh,
-          ghiChu: element?.kihieuNganh
-        })
-        maNganh1 = response[0]
+        console.log(element)
       }
       const response = await hoSoDangKiRepository.create({
         soBaodanh: element.soBaodanh,
@@ -297,8 +372,8 @@ exports.TaoNhieuHoSoDangKi = async (req, res) => {
         tongDiem: 0,
         maDidiem: element.maDidiem,
         maDcdaotao: element.maDcdaotao,
-        maTruong: element.maTruong ?? maTruong1,
-        maNganh: element.maNganh ?? maNganh1,
+        maTruong: data1?.maTruong,
+        maNganh: data2?.maNganh,
         maLoaihinh: element.maLoaihinh,
         maPhanloai: element.maPhanloai,
         maChuyennganhTS: element.maChuyennganhTS,
@@ -308,16 +383,19 @@ exports.TaoNhieuHoSoDangKi = async (req, res) => {
         diemCoBan: 0,
         diemChuyenNganh: 0
       });
+
       if (!response) {
         return responseFailed({ res });
       }
-    });
+    }
+
     return responseSuccess({ res });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return responseServerError({ res, err });
   }
 };
+
 exports.SuaHoSoDangKi = async (req, res) => {
   const hoSoDangKiRepository = new HoSoDangKiRepository();
 
