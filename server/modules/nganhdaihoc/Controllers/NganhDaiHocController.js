@@ -57,6 +57,26 @@ exports.TaoNganhDaiHoc = async (req, res) => {
     return responseServerError({ res, err });
   }
 };
+
+exports.TaoNhieuNganhDaiHoc = async (req, res) => {
+  const nganhDaiHocRepository = new NganhDaiHocRepository();
+  try {
+    for (const element of req.body) {
+      const data1 = await nganhDaiHocRepository.kiemTraNganh(element);
+      if (!data1) {
+        const data = await nganhDaiHocRepository.create({
+          tenNganh: element,
+          kihieuNganh: element,
+          ghiChu: element
+        });
+      }
+  };
+    return responseSuccess({ res });
+  } catch (err) {
+    console.log(err)
+    return responseServerError({ res, err });
+  }
+};
 exports.SuaNganhDaiHoc = async (req, res) => {
   const nganhDaiHocRepository = new NganhDaiHocRepository();
   const id = req.body.id

@@ -15,8 +15,8 @@ import { ACTION_METHOD_TYPE } from '../../../utils/constant'
 import '@styles/react/libs/flatpickr/flatpickr.scss'
 import { TaoNhieuHoSoDangKi } from '../../../../api/hoSoDangKi'
 import { toDateString } from '../../../../utility/Utils'
-import { kiemTraTruong, taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
-import { kiemTraNganh, taoNganhDaiHoc } from '../../../../api/nganhDaiHoc'
+import { kiemTraTruong, taoNhieuTruongDaiHoc, taoTruongDaiHoc } from '../../../../api/truongDaiHoc'
+import { kiemTraNganh, taoNganhDaiHoc, taoNhieuNganhDaiHoc } from '../../../../api/nganhDaiHoc'
 const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, listDcdt, listTDHda, listNganhda, listLHDT, listLTN, listCN, listCNH, listDTUT, loading, setLoading }) => {
     // ** State
     // ** Custom close btn
@@ -100,14 +100,18 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
 
     const _handleXoaNMT = async () => {
         setLoading(true)
+        const listTruong = dataImport.map(obj => obj.kiHieuTruong)
+        const listNganh = dataImport.map(obj => obj.kihieuNganh)
+        const listTruong_ = [...new Set(listTruong)]
+        const listNganh_ = [...new Set(listNganh)]
+        const resNganh = await taoNhieuNganhDaiHoc(listNganh_)
+        const resTruong = await taoNhieuTruongDaiHoc(listTruong_)
         const chunks = chunk(dataImport, 50)
         const promises = chunks.map(async (subarr) => {
             const res = await TaoNhieuHoSoDangKi(subarr)
             return res
         })
-
         const results = await Promise.all(promises)
-
         results.forEach((res) => {
             responseResultHelper(res, handleModal, null, ACTION_METHOD_TYPE.IMPORTEXCEL)
         })
@@ -118,6 +122,8 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
         const data = []
 
         const temp = []
+        const listTruong = []
+        const listNganh = []
         listImport.forEach((row, index) => {
             //kiểm tra stt
             const infoOneRow = {
@@ -253,12 +259,22 @@ const ImportModal = ({ open, fetchUser, handleModal, listImport, listDiadiem, li
                 infoOneRow.coQuan = row[8]
             }
             // kiểm tra trường đại học
-            if (row[9] !== null) {
+            if (row[9] === null) {
+                temp.push({
+                    loi: 'Trường đại học không được để trống',
+                    Vitri: `${listColumn[9]}${index + 2}`
+                })
+            } else {
                 infoOneRow.kiHieuTruong = row[9]
             }
 
             // kiểm tra ngành đại học
-            if (row[10] !== null) {
+            if (row[10] === null) {
+                temp.push({
+                    loi: 'Ngành đại học không được để trống',
+                    Vitri: `${listColumn[10]}${index + 2}`
+                })
+            } else {
                 infoOneRow.kihieuNganh = row[10]
             }
             
