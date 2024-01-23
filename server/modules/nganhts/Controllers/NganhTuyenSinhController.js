@@ -48,6 +48,7 @@ exports.TaoNganhTuyenSinh = async (req, res) => {
       maMon1: req.body.maMon1,
       maMon2: req.body.maMon2,
       maMon3: req.body.maMon3,
+      ghiChu: req.body.ghiChu
     });
     if (!response) {
       return responseFailed({ res });
@@ -67,6 +68,7 @@ exports.SuaNganhTuyenSinh = async (req, res) => {
       maMon1: req.body.maMon1,
       maMon2: req.body.maMon2,
       maMon3: req.body.maMon3,
+      ghiChu: req.body.ghiChu
     });
     if (!response) {
       return responseFailed({ res });
