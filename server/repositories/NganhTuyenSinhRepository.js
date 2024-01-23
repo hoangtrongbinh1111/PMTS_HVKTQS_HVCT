@@ -19,6 +19,7 @@ class NganhTuyenSinhRepository extends BaseRepository {
       queryBuilder = queryBuilder.where((builder) => {
         builder.where('tenNganh', 'like', `%${query}%`);
         builder.orWhere('kihieuNganh', 'like', `%${query}%`);
+        builder.orWhere('ghiChu', 'like', `%${query}%`);
         builder.orWhere('mon1', 'like', `%${query}%`);
         builder.orWhere('mon2', 'like', `%${query}%`);
         builder.orWhere('mon3', 'like', `%${query}%`);
@@ -49,7 +50,7 @@ class NganhTuyenSinhRepository extends BaseRepository {
   }
   _getQueryBuilder() {
     // return this.database(this.tableName).select('tbl_nganhts.maNganhTS','tbl_nganhts.tenNganh','tbl_nganhts.kihieuNganh','tbl_nganhts.maMon1','tbl_nganhts.maMon2','tbl_nganhts.maMon3', 'mh1.tenMon AS mon1', 'mh2.tenMon AS mon2', 'mh3.tenMon AS mon3');
-    return this.database(this.tableName).select("*",'mh1.tenMon AS mon1', 'mh2.tenMon AS mon2', 'mh3.tenMon AS mon3');
+    return this.database(this.tableName).select("*", 'tbl_nganhts.ghiChu as ghiChu','mh1.tenMon AS mon1', 'mh2.tenMon AS mon2', 'mh3.tenMon AS mon3');
   }
 
  
