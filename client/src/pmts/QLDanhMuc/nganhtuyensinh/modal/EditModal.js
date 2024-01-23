@@ -42,6 +42,7 @@ const EditModal = ({
   const [loading, setLoading] = useState(false)
   const [tenNganh, setTen] = useState()
   const [kihieuNganh, setKiHieu] = useState()
+  const [ghiChu, setGhiChu] = useState()
   const [maMon, setMon] = useState({
     mon1: 0,
     mon2: 0,
@@ -69,6 +70,7 @@ const EditModal = ({
       maMon3: maMon.mon3,
       tenNganh,
       kihieuNganh,
+      ghiChu
     })
     responseResultHelper(res, handleModal, fetchUser, ACTION_METHOD_TYPE.UPDATE)
     setLoading(false)
@@ -84,6 +86,7 @@ const EditModal = ({
     })
     setTen(infoEdit.tenNganh !== null ? infoEdit.tenNganh : "")
     setKiHieu(infoEdit.kihieuNganh !== null ? infoEdit.kihieuNganh : "")
+    setGhiChu(infoEdit.ghiChu !== null ? infoEdit.ghiChu : "")
   }, [infoEdit])
   return (
     <Modal isOpen={open} toggle={handleModal} contentClassName="pt-0">
@@ -185,6 +188,29 @@ const EditModal = ({
               </div>
             )
           })}
+           <div className="mb-1">
+            <Label className="form-label" for="ghiChu">
+              Ghi chú<span className={style.redColor}>(*)</span>
+            </Label>
+            <input
+              id="ghiChu"
+              name="ghiChu"
+              className={`${classnames({
+                "is-invalid": errors.ghiChu,
+              })} ${style.inputForm}`}
+              {...register("ghiChu", { required: ghiChu === "" })}
+              value={ghiChu}
+              onChange={(e) => {
+                if (e.target.value === '') {
+                  setError("ghiChu")
+                } else {
+                  clearErrors("ghiChu")
+                }
+                setGhiChu(e.target.value)
+              }}
+              placeholder="VD: CNTT"
+            />
+          </div>
           <Button className="me-1" color="primary" type="submit">
           { loading ? <div className='loader'></div> : 'Sửa'}
           </Button>

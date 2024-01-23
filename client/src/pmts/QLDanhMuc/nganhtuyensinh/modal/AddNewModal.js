@@ -42,6 +42,7 @@ const AddNewModal = ({ open, handleModal, fetchUser, listMonHoc, nhomMon }) => {
   const [loading, setLoading] = useState(false)
   const [tenNganh, setTen] = useState()
   const [kihieuNganh, setKiHieu] = useState()
+  const [ghiChu, setGhiChu] = useState()
   const [maMon, setMon] = useState({
     mon1: 0,
     mon2: 0,
@@ -59,6 +60,7 @@ const AddNewModal = ({ open, handleModal, fetchUser, listMonHoc, nhomMon }) => {
       maMon3: maMon.mon3,
       tenNganh,
       kihieuNganh,
+      ghiChu
     })
     responseResultHelper(
       res,
@@ -74,6 +76,7 @@ const AddNewModal = ({ open, handleModal, fetchUser, listMonHoc, nhomMon }) => {
     setKiHieu()
     setTen()
     reset()
+    setGhiChu()
     setLoading(false)
   }
   const handleOnChange = (data, pop) => {
@@ -183,6 +186,29 @@ const AddNewModal = ({ open, handleModal, fetchUser, listMonHoc, nhomMon }) => {
               </div>
             )
           })}
+          <div className="mb-1">
+            <Label className="form-label" for="ghiChu">
+              Ghi chú<span className={style.redColor}></span>
+            </Label>
+            <input
+              id="ghiChu"
+              name="ghiChu"
+              className={`${classnames({
+                "is-invalid": errors.ghiChu,
+              })} ${style.inputForm}`}
+              {...register("ghiChu", { required: true })}
+              value={ghiChu}
+              onChange={(e) => {
+                if (e.target.value === '') {
+                  setError("ghiChu")
+                } else {
+                  clearErrors("ghiChu")
+                }
+                setGhiChu(e.target.value)
+              }}
+              placeholder="VD: CNTT"
+            />
+          </div>
           <Button className="me-1" color="primary" type="submit">
           { loading ? <div className='loader'></div> : 'Thêm'}
           </Button>
