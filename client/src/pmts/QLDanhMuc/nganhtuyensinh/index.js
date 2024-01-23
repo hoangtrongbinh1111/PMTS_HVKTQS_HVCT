@@ -118,7 +118,12 @@ const NganhTuyenSinh = () => {
             minWidth: '100px',
             selector: row => row.mon3
         },
-
+        {
+            name: 'Ghi chú',
+            sortable: true,
+            minWidth: '100px',
+            selector: row => row.ghiChu
+        },
         {
             name: 'Tác vụ',
             allowOverflow: true,

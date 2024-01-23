@@ -14,7 +14,7 @@ module.exports = function (knex) {
           table.foreign(`maMon2`).references(`${TBL_MONTHI_KEY}`).inTable(`${TBL_MONTHI}`);
           table.string(`maMon3`);
           table.foreign(`maMon3`).references(`${TBL_MONTHI_KEY}`).inTable(`${TBL_MONTHI}`);
-
+          table.string(`ghiChu`);
         });
       }
     })
