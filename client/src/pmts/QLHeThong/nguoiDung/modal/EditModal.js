@@ -106,7 +106,7 @@ const EditModal = ({ open, handleModal, fetchUser, infoEdit }) => {
       formData.append("file", file)
       upLoadImage(formData)
         .then((res) => {
-          if (res.status) {
+          if (res?.status) {
             dataSubmit["anhDaiDien"] = res.result
             updateUser(dataSubmit)
               .then((result) => {

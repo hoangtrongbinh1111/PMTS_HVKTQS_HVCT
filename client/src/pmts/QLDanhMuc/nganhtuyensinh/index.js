@@ -207,7 +207,7 @@ const NganhTuyenSinh = () => {
                         ghiChu: item[2],
                         diemLiet: item[3]
                     })
-                    if (res.status) {
+                    if (res?.status) {
                         fetchUser()
                     } else {
                         MySwal.fire({

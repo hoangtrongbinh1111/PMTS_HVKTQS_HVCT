@@ -18,14 +18,15 @@ const AddNewModal = ({ open, handleModal, listNhomMonThi, listThuTuDonTui, fetch
   // ** State
   // ** Custom close btn
   const CloseBtn = <X className='cursor-pointer' size={15} onClick={handleModal} />
-  const _handleTaoThuTuDonTui = () => {
-    listNhomMonThi.data.map(async (nhom, index) => {
+  const _handleTaoThuTuDonTui = async () => {
+    const listMaMonHoc = listNhomMonThi?.data?.map(item => item.maNhommonhoc)
+    // listNhomMonThi.data.map(async (nhom, index) => {
       const res = await taoThuTuDonTui({
-        maNhommonhoc: nhom.maNhommonhoc,
-        thuTuDon: listThuTuDonTui[index]
+        maNhommonhoc: listMaMonHoc,
+        thuTuDon: listThuTuDonTui
       })
       responseResultHelper(res, handleModal, fetchUser, ACTION_METHOD_TYPE.SAVE)
-    })
+    // })
     callBackDisableTaolai(false)
   }
   return (

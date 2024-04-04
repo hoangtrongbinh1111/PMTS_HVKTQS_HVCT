@@ -171,7 +171,7 @@ const NhomMonThi = () => {
                         ngayThi: item[2],
                         gioThi: item[3]
                     })
-                    if (res.status) {
+                    if (res?.status) {
                         fetchUser()
                     } else {
                         MySwal.fire({

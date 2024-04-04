@@ -239,10 +239,10 @@ const ThuTuDonTui = () => {
                 perPage:1000
             }).then(res => {
                 const numbers = []
-                for (let i = 0; i < thutuDonTui.data.length; i++) {
-                    numbers[i] = thutuDonTui.data[i].thuTuDon.split('-')
+                for (let i = 0; i < thutuDonTui?.data?.length; i++) {
+                    numbers[i] = thutuDonTui?.data[i]?.thuTuDon?.split('-')
                 }
-                const updatedData = res.result.data.map((row, index) => {
+                const updatedData = res.result?.data?.map((row, index) => {
                     // Split the string and convert each part to a number
                     return {
                         ...row,

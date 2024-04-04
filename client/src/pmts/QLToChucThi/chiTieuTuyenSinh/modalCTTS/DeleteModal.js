@@ -29,7 +29,7 @@ const DeleteModal = ({ open, handleModal, fetchDataDetail, fetchData, infoEdit }
       }
     }).then(res => {
       const MySwal = withReactContent(Swal)
-      if (res.status) {
+      if (res?.status) {
         MySwal.fire({
           icon: "success",
           title: "Xóa chỉ tiêu tuyển sinh thành công!",

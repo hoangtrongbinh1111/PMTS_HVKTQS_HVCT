@@ -149,7 +149,7 @@ const ChucVu = () => {
                         tenTruong: item[1],
                         ghiChu: item[2]
                     })
-                    if (res.status) {
+                    if (res?.status) {
                         fetchUser()
                     } else {
                         MySwal.fire({

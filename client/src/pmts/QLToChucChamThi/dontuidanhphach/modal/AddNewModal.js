@@ -117,7 +117,7 @@ const AddNewModal = ({ open, handleModal, fetchCheckDanhPhach, getInfoDanhphach,
                 "is-invalid": errors.sophachBatdau,
               })} ${style.inputForm}`}
               {...register("sophachBatdau", { required: true })}
-              value={checknhapdiem.check ? thongtindanhphach.soPhach : sophachBatdau}
+              value={checknhapdiem?.check ? thongtindanhphach?.soPhach : sophachBatdau}
               onChange={(e) => {
                 const inputValue = e.target.value
                 e.preventDefault()
@@ -150,7 +150,7 @@ const AddNewModal = ({ open, handleModal, fetchCheckDanhPhach, getInfoDanhphach,
                 "is-invalid": errors.sobaiMotui,
               })} ${style.inputForm}`}
               {...register("sobaiMotui", { required: true })}
-              value={checknhapdiem.check ? thongtindanhphach.soBaiMotTui : sobaiMotui}
+              value={checknhapdiem?.check ? thongtindanhphach?.soBaiMotTui : sobaiMotui}
               onChange={(e) => {
                 const inputValue = e.target.value
                 if (inputValue === "") {

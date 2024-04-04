@@ -21,16 +21,19 @@ exports.getListThuTuDon = async (req, res) => {
 
 
 exports.TaoThuTuDon = async (req, res) => {
-
+  const {maNhommonhoc, thuTuDon} = req.body;
   const thutuDonTuiRepository = new ThuTuDonTuiRepository();
   try {
+    for (let i = 0; i < maNhommonhoc?.length; i++) {     
     const response = await thutuDonTuiRepository.create({
-      maNhommonhoc: req.body.maNhommonhoc,
-      thuTuDon: req.body.thuTuDon,
+      maNhommonhoc: maNhommonhoc[i],
+      thuTuDon: thuTuDon[i],
     });
+    console.log(response);
     if (!response) {
       return responseFailed({ res });
     }
+  }
     return responseSuccess({ res });
   } catch (err) {
     return responseServerError({ res, err });

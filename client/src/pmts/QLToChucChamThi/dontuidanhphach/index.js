@@ -205,7 +205,7 @@ const DonTuiDanhPhach = () => {
                     <Row style={{ justifyContent: 'space-between', width: "100%", marginLeft: '0px', marginRight: '0px' }}>
                         <Col className='' md='7' sm='12' style={{display: 'flex', justifyContent: 'flex-start', paddingLeft: '0px'}}>
                         {
-                            (ableChonMon || checkdanhphach.check) && <Col className='' md='7' sm='12'>
+                            (ableChonMon || checkdanhphach?.check) && <Col className='' md='7' sm='12'>
                                 <div className='d-flex mt-md-0 mt-1 align-items-center'>
                                     <Label for='maDidiem' style={{ marginRight: '10px' }}>
                                         Môn thi:
@@ -234,7 +234,7 @@ const DonTuiDanhPhach = () => {
                             </Col>
                         }
                         {
-                            (ableChonMon || checkdanhphach.check) && <Col className='' md='5' sm='12'>
+                            (ableChonMon || checkdanhphach?.check) && <Col className='' md='5' sm='12'>
                                 <div className='d-flex mt-md-0 mt-1 align-items-center'>
                                     <Label for='maDidiem'>
                                         Túi thi:
@@ -262,12 +262,12 @@ const DonTuiDanhPhach = () => {
                         }
                         </Col>
                         <Col className='' md='5' sm='12' style={{display: 'flex', justifyContent: 'flex-end', paddingRight: '0px'}}>
-                            <Button className='' color='primary' onClick={checkdanhphach.check ? handleModalAlert : handleModalDontuiDanhphach}>
+                            <Button className='' color='primary' onClick={checkdanhphach?.check ? handleModalAlert : handleModalDontuiDanhphach}>
                                 <span className='align-middle'>Dồn túi đánh phách</span>
                             </Button>
                         {/* </Col>
                         <Col className='mb-1' md='3' sm='12' style={{ padding: '0' }}> */}
-                            <Button className='ms-2' color='primary' onClick={handleModalPrint} disabled={(!ableChonMon && !checkdanhphach.check)}>
+                            <Button className='ms-2' color='primary' onClick={handleModalPrint} disabled={(!ableChonMon && !checkdanhphach?.check)}>
                                 <Printer size={15} />
                                 <span className='align-middle ms-2'>In HD đánh phách</span>
                             </Button>

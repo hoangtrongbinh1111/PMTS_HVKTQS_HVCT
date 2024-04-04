@@ -3,7 +3,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { ACTION_METHOD_MEAN, ACTION_METHOD_TYPE } from './constant'
 const responseResultHelper = (res, modalPopupFunc, callApi, actionType) => {
     const MySwal = withReactContent(Swal)
-    if (res.status) {
+    if (res?.status) {
         MySwal.fire({
             icon: "success",
             title: ACTION_METHOD_MEAN[actionType],

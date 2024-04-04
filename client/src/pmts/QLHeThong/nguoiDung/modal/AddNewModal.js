@@ -89,7 +89,7 @@ const AddNewModal = ({ open, handleModal, fetchUser }) => {
       formData.append("file", file)
       upLoadImage(formData)
         .then((res) => {
-          if (res.status) {
+          if (res?.status) {
             dataSubmit["anhDaiDien"] = res.result
             createUser(dataSubmit)
               .then((result) => {

@@ -45,7 +45,7 @@ const EditModal = ({ open, handleModal, fetchDataDetail, fetchData, infoEdit, da
     updateCT(dataSubmit)
       .then(res => {
         const MySwal = withReactContent(Swal)
-        if (res.status) {
+        if (res?.status) {
           MySwal.fire({
             icon: "success",
             title: "Chỉnh sửa chỉ tiêu tuyển sinh thành công!",

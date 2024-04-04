@@ -77,7 +77,7 @@ const AddNewModal = ({
     createNewCT(dataSubmit)
       .then((res) => {
         const MySwal = withReactContent(Swal)
-        if (res.status) {
+        if (res?.status) {
           MySwal.fire({
             icon: "success",
             title: "Thêm mới chỉ tiêu tuyển sinh thành công!",
